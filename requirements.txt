@@ -1,3 +1,4 @@
 torch==1.9.0+cu111
 torchvision==0.10.0+cu111
 opencv-python-headless==4.5.3.56
+ultralytics==8.0.71

@@ -2,7 +2,7 @@ import cv2
 
 
 class LoadWebcam:
-    def __init__(self, pipe='0', img_size=640, stride=32):
+    def __init__(self, pipe="0", img_size=640, stride=32):
         self.img_size = img_size
         self.stride = stride
         if pipe.isnumeric():
@@ -18,10 +18,6 @@ class LoadWebcam:
 
     def __next__(self):
         self.count += 1
-        if cv2.waitKey(1) == ord('q'):
-            self.cap.release()
-            cv2.destroyAllWindows()
-            raise StopIteration
         if self.pipe == 0:
             ret, frame = self.cap.read()
             height, width = frame.shape[:2]
@@ -49,10 +45,6 @@ class LoadVideo:
 
     def __next__(self):
         self.count += 1
-        if cv2.waitKey(1) == ord('q'):
-            self.cap.release()
-            cv2.destroyAllWindows()
-            raise StopIteration
         ret, frame = self.cap.read()
         height, width = frame.shape[:2]
         ratio = self.img_size / max(height, width)
