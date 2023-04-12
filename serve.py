@@ -14,7 +14,7 @@ logging.basicConfig(
 
 @dataclass
 class Config:
-    source: str = 'assets/walking_resized.mp4'
+    source: str = "assets/walking_resized.mp4"
     view_img: bool = False
     model_type: str = "detr_resnet50"
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
@@ -65,7 +65,7 @@ class Detector:
                 probas = outputs["pred_logits"].softmax(-1)[0, :, :-1]
                 keep = probas.max(-1).values > 0.9
                 bboxes_scaled = rescale_bboxes(
-                    outputs["pred_boxes"][0, keep], img.shape[:2]
+                    outputs["pred_boxes"][0, keep].to("cpu"), img.shape[:2]
                 )
             else:
                 outputs = model(img)
@@ -81,7 +81,7 @@ class Detector:
                         break
                 else:
                     plot_results(img, probas[keep], bboxes_scaled)
-        logging.info('************************* Done *****************************')
+        logging.info("************************* Done *****************************")
 
 
 if __name__ == "__main__":
