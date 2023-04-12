@@ -14,8 +14,8 @@ logging.basicConfig(
 
 @dataclass
 class Config:
-    source: str = "0"
-    view_img: bool = True
+    source: str = 'assets/walking_resized.mp4'
+    view_img: bool = False
     model_type: str = "detr_resnet50"
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
     skip: int = 1
@@ -81,6 +81,7 @@ class Detector:
                         break
                 else:
                     plot_results(img, probas[keep], bboxes_scaled)
+        logging.info('************************* Done *****************************')
 
 
 if __name__ == "__main__":

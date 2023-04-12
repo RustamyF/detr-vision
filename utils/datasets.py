@@ -19,13 +19,12 @@ class LoadWebcam:
     def __next__(self):
         self.count += 1
         if self.pipe == 0:
+            if not ret:
+                raise StopIteration
             ret, frame = self.cap.read()
             height, width = frame.shape[:2]
             ratio = self.img_size / max(height, width)
             frame = cv2.resize(frame, (int(width * ratio), int(height * ratio)))
-            if not ret:
-                raise StopIteration
-
         return frame
 
     def __len__(self):
@@ -46,11 +45,11 @@ class LoadVideo:
     def __next__(self):
         self.count += 1
         ret, frame = self.cap.read()
+        if not ret:
+            raise StopIteration
         height, width = frame.shape[:2]
         ratio = self.img_size / max(height, width)
         frame = cv2.resize(frame, (int(width * ratio), int(height * ratio)))
-        if not ret:
-            raise StopIteration
         return frame
 
     def __len__(self):

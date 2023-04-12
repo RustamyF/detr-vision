@@ -4,12 +4,12 @@ services:
   cv_detection:
     build: .
     runtime: nvidia
-    devices:
-      - /dev/video0:/dev/video0
+#    devices:
+#      - /dev/video0:/dev/video0
     environment:
       - DISPLAY=:0
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-    command: python server.py
+    command: python3 serve.py
