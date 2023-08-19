@@ -47,7 +47,7 @@ class Detector:
                 raise ValueError("DETR model type is not specified")
             model = torch.hub.load(
                 "facebookresearch/detr", self.config.model_type, pretrained=True
-            )
+            ).to(self.device)
             model.eval()
             logging.info(f"DETR Inference using {self.config.model_type}")
         return model
