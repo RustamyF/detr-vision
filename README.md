@@ -1,7 +1,8 @@
 # detr-vision
 Implementation of DETR: End-to-End Object Detection with Transformers in PyTorch. In this repo, I have used DETR model
 and yolo models on real-time video stream. Currently, Yolo is commonly used in real-time object detection application.
-DETR is a new model architecture (shown bellow) for object detection that uses transformers.
+DETR is a new model architecture (shown bellow) for object detection that uses transformers. Please refer to [**this blog post**](https://medium.com/@faheemrustamy/detection-transformer-detr-vs-yolo-for-object-detection-baeb3c50bc3) for further information.
+
 
 ![img](assets/detr.png)
 
